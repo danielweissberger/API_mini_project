@@ -1,8 +1,11 @@
 import math
+
+# This function will retrieve a list of daily stock data from quandi
+# (json_dict is a dictionary created from a quandi API response)
 def get_daily_data_item(item_num, json_dict):
     return [daily_data[item_num] for daily_data in json_dict['dataset_data']['data']]
 
-
+# fill_nones will take a zipped list of opn/close data from quandi and fill in None values (using previous)
 def fill_nones(zipped_list):
     for index, lst in enumerate(zipped_list):
         if lst[0] == None:
@@ -12,11 +15,11 @@ def fill_nones(zipped_list):
 
     return zipped_list
 
-
+# Calculates difference of 2 lists of equal length (elements must be integer/float)
 def list_diff(zipped_list):
     return [l1-l2 for l1, l2 in zipped_list]
 
-
+# Calculates the median of a list
 def median(lst):
     lst.sort()
     list_length = len(lst)
